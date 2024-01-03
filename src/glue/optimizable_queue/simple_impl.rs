@@ -128,7 +128,7 @@ pub struct FixedWidthEncodingGenericQueue<
     pub(crate) head_state: Num<E>,
     pub(crate) tail_state: Num<E>,
     #[derivative(Debug = "ignore")]
-    pub(crate) witness: FixedWidthEncodingGenericQueueWitness<E, I, N>,
+    pub witness: FixedWidthEncodingGenericQueueWitness<E, I, N>,
 }
 
 use crate::scheduler::queues::FixedWidthEncodingGenericQueueState;

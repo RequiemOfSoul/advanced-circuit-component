@@ -7,7 +7,6 @@ edition = "2021"
 resolver = "2"
 
 [dependencies]
-# franklin-crypto = {path = "../franklin-crypto", features = ["plonk", "multicore"]}
 franklin-crypto = {git = "https://github.com/zkLinkProtocol/franklin-crypto", branch = "dev", features = ["multicore"]}
 hex = "*"
 once_cell = "*"
@@ -18,7 +17,6 @@ num-integer = "0.1"
 num-traits = "0.2"
 itertools = "0.10"
 cs_derive = {path = "cs_derive"}
-# rescue_poseidon = {path = "../rescue-poseidon"}
 rescue_poseidon = {git = "https://github.com/zkLinkProtocol/rescue-poseidon.git"}
 arrayvec = "0.7"
 num-derive = "0.3"
