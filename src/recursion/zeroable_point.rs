@@ -6,8 +6,8 @@ pub struct PointAffine<'a, E: Engine, G: CurveAffine>
 where
     <G as CurveAffine>::Base: PrimeField,
 {
-    pub(crate) non_zero_point: AffinePoint<'a, E, G>,
-    pub(crate) is_zero: Boolean,
+    pub non_zero_point: AffinePoint<'a, E, G>,
+    pub is_zero: Boolean,
 }
 
 impl<'a, E: Engine, G: CurveAffine> PointAffine<'a, E, G>

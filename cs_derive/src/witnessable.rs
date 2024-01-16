@@ -6,7 +6,7 @@ use syn::{
     Generics, Type, TypeArray, TypePath,
 };
 
-use crate::new_utils::get_type_params_from_generics_output_params;
+use crate::new_utils::{fetch_attr, get_type_params_from_generics_output_params};
 use crate::new_utils::{
     get_type_params_from_generics, get_witness_ident, has_engine_generic_param,
 };
@@ -25,7 +25,7 @@ pub(crate) fn derive_witnessable(input: proc_macro::TokenStream) -> proc_macro::
     } = derived_input.clone();
 
     let serde_remove_bounds = if let Some(serde_remove_bounds) =
-        crate::new_utils::fetch_attr(SERDE_REMOVE_BOUNDS, &attrs)
+        fetch_attr(SERDE_REMOVE_BOUNDS, &attrs)
     {
         let serde_remove_bounds =
             syn::parse_str::<syn::Expr>(&serde_remove_bounds).expect("has attr as Expr");
