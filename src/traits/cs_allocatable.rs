@@ -66,3 +66,23 @@ impl<E: Engine, T: CSAllocatable<E>, const N: usize> CSAllocatable<E> for [T; N]
         Ok(result)
     }
 }
+
+impl<E: Engine, T: CSAllocatable<E>> CSAllocatable<E> for Vec<T> {
+    fn alloc_from_witness<CS: ConstraintSystem<E>>(
+        cs: &mut CS,
+        witness: Option<Self::Witness>,
+    ) -> Result<Self, SynthesisError> {
+        use std::convert::TryInto;
+
+        if let Some(w) = witness {
+            let mut result = vec![];
+            for wit in w {
+                let el = T::alloc_from_witness(cs, Some(wit))?;
+                result.push(el);
+            }
+            Ok(result)
+        } else {
+            panic!("Vector allocator must be exist witness")
+        }
+    }
+}

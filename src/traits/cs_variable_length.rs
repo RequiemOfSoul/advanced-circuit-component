@@ -67,6 +67,24 @@ impl<E: Engine, T: CircuitVariableLengthEncodable<E>, const N: usize>
     }
 }
 
+impl<E: Engine, T: CircuitVariableLengthEncodable<E>>
+    CircuitVariableLengthEncodable<E> for Vec<T>
+{
+    fn encoding_length() -> usize {
+        0
+    }
+
+    fn encode<CS: ConstraintSystem<E>>(&self, cs: &mut CS) -> Result<Vec<Num<E>>, SynthesisError> {
+        let mut tmp = vec![];
+        for el in self.iter() {
+            let packed = el.encode(cs)?;
+            tmp.extend(packed);
+        }
+
+        Ok(tmp)
+    }
+}
+
 pub trait CircuitVariableLengthEncodableExt<E: Engine>:
     CircuitVariableLengthEncodable<E> + CSWitnessable<E>
 {
