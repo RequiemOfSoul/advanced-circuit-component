@@ -443,6 +443,27 @@ pub fn decommit_encodable_item<
     Ok(item)
 }
 
+pub fn decommit_variable_length_encodable_item<
+    E: Engine,
+    CS: ConstraintSystem<E>,
+    R: CircuitArithmeticRoundFunction<E, AWIDTH, SWIDTH, StateElement = Num<E>>,
+    I: CircuitVariableLengthEncodable<E> + CSAllocatable<E>,
+    const AWIDTH: usize,
+    const SWIDTH: usize,
+    const N: usize,
+>(
+    cs: &mut CS,
+    witness: Option<I::Witness>,
+    commitment: Num<E>,
+    round_function: &R,
+) -> Result<I, SynthesisError> {
+    let item = I::alloc_from_witness(cs, witness)?;
+    let recomputed_commitment = commit_variable_length_encodable_item(cs, &item, round_function)?;
+    commitment.enforce_equal(cs, &recomputed_commitment)?;
+
+    Ok(item)
+}
+
 pub fn decommit_encodable_item_using_optimizer<
     E: Engine,
     CS: ConstraintSystem<E>,
