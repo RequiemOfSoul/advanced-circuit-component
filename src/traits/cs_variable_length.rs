@@ -67,9 +67,7 @@ impl<E: Engine, T: CircuitVariableLengthEncodable<E>, const N: usize>
     }
 }
 
-impl<E: Engine, T: CircuitVariableLengthEncodable<E>>
-    CircuitVariableLengthEncodable<E> for Vec<T>
-{
+impl<E: Engine, T: CircuitVariableLengthEncodable<E>> CircuitVariableLengthEncodable<E> for Vec<T> {
     fn encoding_length() -> usize {
         0
     }

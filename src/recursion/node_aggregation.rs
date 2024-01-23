@@ -585,8 +585,12 @@ pub fn aggregate_generic_inner<
             proof,
             rns_params: rns_params,
         };
-
-        let proof_encoding: Vec<_> = rns_proof.encode()?.into_iter().map(|el| Some(el)).collect();
+        let proof_encoding = match rns_proof.proof {
+            Some(Proof { n: 0, .. }) => {
+                vec![Some(E::Fr::zero()); rns_proof.encoding_length_for_instance()]
+            }
+            _ => rns_proof.encode()?.into_iter().map(|el| Some(el)).collect(),
+        };
         let proof_encoding = allocate_vec_of_nums(cs, &proof_encoding)?;
         // absorb
         for n in proof_encoding.iter() {

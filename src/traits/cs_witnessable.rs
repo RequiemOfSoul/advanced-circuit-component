@@ -36,10 +36,10 @@ impl<E: Engine> CSWitnessable<E> for Boolean {
     }
 }
 
-use franklin_crypto::plonk::circuit::byte::Byte;
-use cs_derive::{CSAllocatable, CSVariableLengthEncodable, CSWitnessable};
 use crate::scheduler::queues::FullSpongeLikeQueueState;
 use crate::vm::vm_state::GlobalContext;
+use cs_derive::{CSAllocatable, CSVariableLengthEncodable, CSWitnessable};
+use franklin_crypto::plonk::circuit::byte::Byte;
 
 impl<E: Engine> CSWitnessable<E> for Byte<E> {
     type Witness = u8;
