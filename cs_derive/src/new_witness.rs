@@ -174,7 +174,7 @@ fn derive_empty_fn(input: &DeriveInput) -> TokenStream {
     quote! {
         impl#generics #ident<#type_params> {
             pub fn empty() -> Self{
-                use num_traits::Zero;
+                use cs_derive_traits::num_traits::Zero;
                 use std::convert::TryInto;
                 Self{
                     #field_initializations

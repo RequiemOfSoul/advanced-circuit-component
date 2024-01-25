@@ -93,7 +93,7 @@ pub(crate) fn derive_packable(
         mod #private_mod_ident {
             use super::*;
 
-            type E = crate::bellman::pairing::bn256::Bn256;
+            type E = cs_derive_traits::Bn256;
             pub(crate) const #inner_const_ident: usize = #len_expression;
         }
 

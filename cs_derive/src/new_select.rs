@@ -110,7 +110,7 @@ pub(crate) fn derive_select(input: proc_macro::TokenStream) -> proc_macro::Token
                     return Ok(a.clone());
                 }
 
-                use num_traits::Zero;
+                use cs_derive_traits::num_traits::Zero;
                 use std::convert::TryInto;
                 #array_selections
                 #field_selections

@@ -1,37 +1,40 @@
 [package]
 name = "advanced_circuit_component"
 version = "1.3.3"
-authors = ["Alex Vlasov <alex.m.vlasov@gmail.com>", "Konstantin Panarin <kp@matterlabs.dev>"]
+authors = [
+    "Alex Vlasov <alex.m.vlasov@gmail.com>",
+    "Konstantin Panarin <kp@matterlabs.dev>",
+]
 edition = "2021"
 
 resolver = "2"
 
 [dependencies]
-franklin-crypto = {git = "https://github.com/zkLinkProtocol/franklin-crypto", branch = "dev", features = ["multicore"]}
+franklin-crypto = { git = "https://github.com/zkLinkProtocol/franklin-crypto", branch = "dev", features = [
+    "multicore",
+] }
 hex = "*"
 once_cell = "*"
 derivative = "*"
-num-bigint = {version = "0.4", features = ["serde"]}
+num-bigint = { version = "0.4", features = ["serde"] }
 rand = "0.4"
 num-integer = "0.1"
 num-traits = "0.2"
 itertools = "0.10"
-cs_derive = {path = "cs_derive"}
-rescue_poseidon = {git = "https://github.com/zkLinkProtocol/rescue-poseidon.git"}
+cs_derive = { path = "cs_derive" }
+cs_derive_traits = { path = "cs_derive_traits" }
+rescue_poseidon = { git = "https://github.com/zkLinkProtocol/rescue-poseidon.git" }
 arrayvec = "0.7"
 num-derive = "0.3"
-zk_evm = {git = "https://github.com/matter-labs/era-zk_evm.git", branch = "v1.3.3"}
-serde = {version = "1", features = ["derive"]}
-smallvec = {version = "*", features = ["const_generics"]}
+zk_evm = { git = "https://github.com/matter-labs/era-zk_evm.git", branch = "v1.3.3" }
+serde = { version = "1", features = ["derive"] }
+smallvec = { version = "*", features = ["const_generics"] }
 
 [workspace]
-members = ["./cs_derive"]
+members = ["./cs_derive", "cs_derive_traits"]
 
 [profile.dev]
 split-debuginfo = "unpacked"
 
 [features]
 external_testing = []
-
-
-
