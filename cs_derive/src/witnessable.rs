@@ -118,7 +118,7 @@ pub(crate) fn derive_witnessable(input: proc_macro::TokenStream) -> proc_macro::
             type Witness = #witness_ident<#type_params_of_witness_struct>;
 
             fn create_witness(&self) -> Option<Self::Witness>{
-                use num_traits::Zero;
+                use cs_derive_traits::num_traits::Zero;
                 use std::convert::TryInto;
                 // #array_initializations
 
@@ -132,7 +132,7 @@ pub(crate) fn derive_witnessable(input: proc_macro::TokenStream) -> proc_macro::
             }
 
             fn placeholder_witness() -> Self::Witness {
-                use num_traits::Zero;
+                use cs_derive_traits::num_traits::Zero;
                 use std::convert::TryInto;
                 // #array_initializations
 
@@ -202,11 +202,8 @@ pub(crate) fn derive_witness_struct_recursive(derived_input: DeriveInput) -> Der
                                 // field.attrs.push(att);
                             }
                             SerdeDeriveToUse::BigArray => {
-                                // let att: Attribute = syn::parse_quote! {
-                                //     #[serde(bound = "", with = "::sync_vm::utils::BigArraySerde")]
-                                // };
                                 let att: Attribute = syn::parse_quote! {
-                                    #[serde(with = "crate::utils::BigArraySerde")]
+                                    #[serde(with = "cs_derive_traits::BigArraySerde")]
                                 };
                                 field.attrs.push(att);
                             }

@@ -1,0 +1,9 @@
+[package]
+name = "cs_derive_traits"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+serde = { version = "1", features = ["derive"] }
+pairing = { package = "pairing_ce", version = "0.28.*" }
+num-traits = "0.2"

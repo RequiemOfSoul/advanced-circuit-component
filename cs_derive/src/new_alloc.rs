@@ -92,7 +92,7 @@ pub(crate) fn derive_alloc(input: proc_macro::TokenStream) -> proc_macro::TokenS
     let expanded = quote! {
         impl#generics #ident<#type_params_of_allocated_struct>{
             pub fn allocate#function_generics(cs: &mut CS, witness: Option<#witness_ident<#type_params_of_witness_struct>>) -> Result<Self, SynthesisError>{
-                use num_traits::Zero;
+                use cs_derive_traits::num_traits::Zero;
                 use std::convert::TryInto;
                 #array_initializations
                 #array_initializations_for_allocation
@@ -104,7 +104,7 @@ pub(crate) fn derive_alloc(input: proc_macro::TokenStream) -> proc_macro::TokenS
             }
 
             pub fn empty() -> Self{
-                use num_traits::Zero;
+                use cs_derive_traits::num_traits::Zero;
                 use std::convert::TryInto;
                 #array_initializations
                 #field_initializations_for_empty_fn
